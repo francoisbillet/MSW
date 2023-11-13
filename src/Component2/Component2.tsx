@@ -13,5 +13,5 @@ export const Component2 = () => {
       .catch(() => setError(true));
   }, []);
 
-  return !error ? <div>{product?.title}</div> : <div>error</div>;
+  return !error ? <div>Component2 : {product?.title}</div> : <div>error</div>;
 };

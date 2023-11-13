@@ -20,5 +20,5 @@ export const Dummy = () => {
       .catch(() => setError(true));
   }, []);
 
-  return !error ? <div>{product?.title}</div> : <div>error</div>;
+  return !error ? <div>Dummy: {product?.title}</div> : <div>error</div>;
 };
