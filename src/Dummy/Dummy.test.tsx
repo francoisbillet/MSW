@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Dummy } from "./Dummy";
 import { server } from "../mocks/server";
-import { rest } from "msw";
+import { HttpResponse, delay, http } from "msw";
 
 describe("Dummy", () => {
   it("should display product title", async () => {
@@ -12,8 +12,8 @@ describe("Dummy", () => {
 
   it("should display error", async () => {
     server.use(
-      rest.get("https://dummyjson.com/products/:productId", (req, res, ctx) => {
-        return res(ctx.status(400));
+      http.get("https://dummyjson.com/products/:productId", () => {
+        return new HttpResponse("Not found", { status: 404 });
       })
     );
 
@@ -24,8 +24,9 @@ describe("Dummy", () => {
 
   it("should display loader", async () => {
     server.use(
-      rest.get("https://dummyjson.com/products/:productId", (req, res, ctx) => {
-        return res(ctx.status(200), ctx.json({}), ctx.delay("infinite"));
+      http.get("https://dummyjson.com/products/:productId", async () => {
+        await delay("infinite");
+        return new HttpResponse();
       })
     );
 

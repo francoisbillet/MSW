@@ -1,13 +1,8 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  rest.get("https://dummyjson.com/products/:productId", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        id: req.params.productId,
-        title: "My mocked product",
-      })
-    );
+  http.get("https://dummyjson.com/products/:productId", ({ params }) => {
+    const { productId } = params;
+    return new HttpResponse.json({ id: productId, title: "My mocked product" });
   }),
 ];
