@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Dummy } from "./Dummy";
+import { Dummy } from "./Dummy/Dummy";
 
 function App() {
   return (
