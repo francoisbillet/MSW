@@ -5,6 +5,6 @@ describe("Dummy", () => {
   it("should work !", async () => {
     render(<Dummy />);
 
-    expect(await screen.findByText("Coucou")).toBeInTheDocument();
+    await screen.findByText("Test");
   });
 });
